@@ -41,7 +41,7 @@ function App() {
 
           <Route
             path="/partnerships"
-            element={<Partnership />}
+            element={<Partnerships />}
           />
 
           <Route
