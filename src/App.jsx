@@ -15,6 +15,8 @@ function App() {
 
       <Navbar />
 
+      <main style={{ paddingTop: "80px", paddingLeft: "20px", paddingRight: "20px" }}>
+
       <main>
         <Routes>
 
