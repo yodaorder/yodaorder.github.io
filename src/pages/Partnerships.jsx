@@ -1,180 +1,105 @@
 import { useState } from "react";
-import { submitPartnership } from "../services/discord";
+import { db } from "../services/firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 
-function Partnership() {
-
+function Partnerships() {
   const [organization, setOrganization] = useState("");
   const [email, setEmail] = useState("");
   const [discord, setDiscord] = useState("");
   const [message, setMessage] = useState("");
-
   const [submitted, setSubmitted] = useState(false);
 
 
   async function handleSubmit(e) {
-
     e.preventDefault();
 
-
-    if (!organization || !email || !discord || !message) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-
     try {
-
-      await submitPartnershipWebhook({
+      await addDoc(collection(db, "partnerships"), {
         organization,
         email,
         discord,
-        message
+        message,
+        status: "pending",
+        createdAt: serverTimestamp()
       });
-
-
-      setSubmitted(true);
-
 
       setOrganization("");
       setEmail("");
       setDiscord("");
       setMessage("");
-
+      setSubmitted(true);
 
     } catch (error) {
-
-      console.error(
-        "Partnership submission failed:",
-        error
-      );
-
-      alert(
-        "Something went wrong. Please try again."
-      );
-
+      console.error("Partnership submission failed:", error);
+      alert("Failed to submit partnership request.");
     }
-
   }
 
 
-
   return (
+    <div>
+      <h1>Partnership Request</h1>
 
-    <div className="page-container">
+      <p>
+        Interested in partnering with Riftline? Submit a request below.
+      </p>
 
-
-      <div className="partnership-container">
-
-        <h1>
-          Partnership Request
-        </h1>
-
-
+      {submitted && (
         <p>
-          Interested in partnering with Riftline Esports?
-          Fill out the form below and our leadership team
-          will review your request.
+          Your partnership request has been submitted!
         </p>
+      )}
 
+      <form onSubmit={handleSubmit}>
 
+        <input
+          type="text"
+          placeholder="Organization Name"
+          value={organization}
+          onChange={(e) => setOrganization(e.target.value)}
+          required
+        />
 
-        {submitted && (
+        <br />
 
-          <div className="success-message">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-            Partnership request submitted successfully!
+        <br />
 
-          </div>
+        <input
+          type="text"
+          placeholder="Discord Username"
+          value={discord}
+          onChange={(e) => setDiscord(e.target.value)}
+          required
+        />
 
-        )}
+        <br />
 
+        <textarea
+          placeholder="Partnership Details"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+        />
 
+        <br />
 
-        <form
-          onSubmit={handleSubmit}
-          className="partnership-form"
-        >
+        <button type="submit">
+          Submit Partnership
+        </button>
 
-
-          <label>
-            Organization Name
-          </label>
-
-          <input
-            type="text"
-            placeholder="Your organization"
-            value={organization}
-            onChange={(e) =>
-              setOrganization(e.target.value)
-            }
-          />
-
-
-
-          <label>
-            Email
-          </label>
-
-          <input
-            type="email"
-            placeholder="contact@example.com"
-            value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
-          />
-
-
-
-          <label>
-            Discord Username
-          </label>
-
-          <input
-            type="text"
-            placeholder="username"
-            value={discord}
-            onChange={(e) =>
-              setDiscord(e.target.value)
-            }
-          />
-
-
-
-          <label>
-            Partnership Details
-          </label>
-
-          <textarea
-            placeholder="Tell us about your partnership idea..."
-            value={message}
-            onChange={(e) =>
-              setMessage(e.target.value)
-            }
-          />
-
-
-
-          <button
-            type="submit"
-            className="admin-btn"
-          >
-            Submit Partnership Request
-          </button>
-
-
-        </form>
-
-
-      </div>
-
-
+      </form>
     </div>
-
   );
-
 }
 
 
-export default Partnership;
+export default Partnerships;
