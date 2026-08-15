@@ -38,7 +38,7 @@ function Login() {
 
       setError("");
 
-      navigate("/admin");
+      navigate("/admin", { replace: true });
 
     } else {
 
