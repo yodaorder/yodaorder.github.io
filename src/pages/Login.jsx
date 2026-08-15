@@ -1,85 +1,108 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { login } from "../services/auth";
 
 function Login() {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
 
-  async function handleLogin(e) {
+  const staffAccounts = [
+    "owner@riftline.com",
+    "admin@riftline.com",
+    "staff@riftline.com"
+  ];
+
+  const staffPassword = "RiftlineStaff123";
+
+
+  function handleLogin(e) {
     e.preventDefault();
 
-    try {
-      await login(email, password);
+    const validEmail = staffAccounts.includes(
+      email.toLowerCase().trim()
+    );
 
-      navigate("/admin");
+    const validPassword =
+      password === staffPassword;
 
-    } catch (err) {
-      setError("Invalid email or password");
+
+    if (validEmail && validPassword) {
+
+      localStorage.setItem(
+        "staffLoggedIn",
+        "true"
+      );
+
+      localStorage.setItem(
+        "staffEmail",
+        email.toLowerCase().trim()
+      );
+
+
+      window.location.href = "/admin";
+
+    } else {
+
+      setError(
+        "Invalid staff email or password."
+      );
+
     }
   }
 
 
   return (
-    <div className="login-container">
+    <div className="login-page">
 
-      <h1>Riftline Admin Login</h1>
+      <div className="login-box">
 
-      <p>
-        Staff access only.
-      </p>
+        <h1>
+          Staff Login
+        </h1>
 
-
-      <div className="card">
 
         <form onSubmit={handleLogin}>
 
-          <label>
-            Email
-          </label>
-
           <input
             type="email"
-            placeholder="Staff email"
+            placeholder="Staff Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            required
           />
 
-
-          <label>
-            Password
-          </label>
 
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+            required
           />
 
 
-          {error && (
-            <p>
-              {error}
-            </p>
-          )}
-
-
-          <button className="btn" type="submit">
+          <button type="submit">
             Login
           </button>
 
+
         </form>
+
+
+        {error && (
+          <p className="error">
+            {error}
+          </p>
+        )}
 
       </div>
 
     </div>
   );
 }
+
 
 export default Login;
