@@ -15,9 +15,8 @@ function App() {
 
       <Navbar />
 
-      <main style={{ paddingTop: "80px", paddingLeft: "20px", paddingRight: "20px" }}>
-
       <main>
+
         <Routes>
 
           <Route
@@ -40,6 +39,7 @@ function App() {
           />
 
         </Routes>
+
       </main>
 
       <Footer />
@@ -47,5 +47,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
