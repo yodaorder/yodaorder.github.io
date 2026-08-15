@@ -1,34 +1,27 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const staffAccounts = [
-    "contact.me.for.question@gmail.com",
-    "Aks.jain16@gmail.com",
+  const staffEmails = [
+    "contact.me.for.question@gmail.com"
   ];
 
   const staffPassword = "vR7!qL9#X2@pM6$zK8^dF4&wN1";
 
 
-function handleLogin(e) {
-  e.preventDefault();
+  function handleLogin(e) {
+    e.preventDefault();
 
-  console.log("Email:", email);
-  console.log("Password:", password);
-  console.log("Email valid:", staffAccounts.includes(email.toLowerCase().trim()));
-  console.log("Password valid:", password === staffPassword);
+    const cleanEmail = email.toLowerCase().trim();
 
-  // rest of login code
-
-    const validEmail = staffAccounts.includes(
-      email.toLowerCase().trim()
-    );
-
-    const validPassword =
-      password === staffPassword;
+    const validEmail = staffEmails.includes(cleanEmail);
+    const validPassword = password === staffPassword;
 
 
     if (validEmail && validPassword) {
@@ -40,16 +33,16 @@ function handleLogin(e) {
 
       localStorage.setItem(
         "staffEmail",
-        email.toLowerCase().trim()
+        cleanEmail
       );
 
-      window.location.hash = "/admin";
+      setError("");
+
+      navigate("/admin");
 
     } else {
 
-      setError(
-        "Invalid staff email or password."
-      );
+      setError("Invalid staff email or password.");
 
     }
   }
@@ -93,12 +86,11 @@ function handleLogin(e) {
             Login
           </button>
 
-
         </form>
 
 
         {error && (
-          <p className="error">
+          <p>
             {error}
           </p>
         )}
