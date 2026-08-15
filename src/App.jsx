@@ -11,22 +11,20 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <div className="app">
-
+    <>
       <Navbar />
 
       <main>
-
         <Routes>
 
-          <Route
-            path="/"
-            element={<Home />}
+          <Route 
+            path="/" 
+            element={<Home />} 
           />
 
-          <Route
-            path="/login"
-            element={<Login />}
+          <Route 
+            path="/login" 
+            element={<Login />} 
           />
 
           <Route
@@ -39,14 +37,11 @@ function App() {
           />
 
         </Routes>
-
       </main>
 
       <Footer />
-
-    </div>
+    </>
   );
 }
-
 
 export default App;
