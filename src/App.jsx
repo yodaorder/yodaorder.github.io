@@ -3,6 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
+import Teams from "./pages/Teams";
+import Partnerships from "./pages/Partnerships";
+import Contact from "./pages/Contact";
+import Members from "./pages/Members";
+
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -23,6 +28,26 @@ function App() {
 
       <main>
         <Routes>
+
+          <Route
+            path="/members"
+            element={<Members />}
+          />
+
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+
+          <Route
+            path="/partnerships"
+            element={<Partnership />}
+          />
+
+          <Route
+            path="/teams"
+            element={<Teams />}
+          />
 
           <Route 
             path="/" 
