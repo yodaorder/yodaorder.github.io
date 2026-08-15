@@ -43,8 +43,7 @@ function handleLogin(e) {
         email.toLowerCase().trim()
       );
 
-
-      window.location.href = "#/admin";
+      window.location.hash = "/admin";
 
     } else {
 
