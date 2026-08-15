@@ -13,8 +13,15 @@ function Login() {
   const staffPassword = "vR7!qL9#X2@pM6$zK8^dF4&wN1";
 
 
-  function handleLogin(e) {
-    e.preventDefault();
+function handleLogin(e) {
+  e.preventDefault();
+
+  console.log("Email:", email);
+  console.log("Password:", password);
+  console.log("Email valid:", staffAccounts.includes(email.toLowerCase().trim()));
+  console.log("Password valid:", password === staffPassword);
+
+  // rest of login code
 
     const validEmail = staffAccounts.includes(
       email.toLowerCase().trim()
