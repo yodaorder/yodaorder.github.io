@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
