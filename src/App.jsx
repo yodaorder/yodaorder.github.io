@@ -4,18 +4,20 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+import "./App.css";
 
 
 function App() {
   return (
-    <div>
+    <div className="app">
+
+      <Navbar />
 
       <main>
-
         <Routes>
 
           <Route
@@ -28,7 +30,6 @@ function App() {
             element={<Login />}
           />
 
-
           <Route
             path="/admin"
             element={
@@ -39,15 +40,12 @@ function App() {
           />
 
         </Routes>
-
       </main>
-
 
       <Footer />
 
     </div>
   );
 }
-
 
 export default App;
