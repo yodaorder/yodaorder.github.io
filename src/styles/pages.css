@@ -1,0 +1,123 @@
+/* Riftline Esports Page Styles */
+
+
+/* Home Page */
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 18px;
+}
+
+
+/* Page Header */
+
+.page-header {
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 42px;
+}
+
+.page-header p {
+  max-width: 700px;
+}
+
+
+/* Teams Page */
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+
+/* Members Page */
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+
+/* News Page */
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.news-date {
+  color: #888;
+  font-size: 14px;
+}
+
+
+/* Partnership Page */
+
+.partnership-form {
+  max-width: 700px;
+  margin: auto;
+}
+
+.partnership-form input,
+.partnership-form textarea {
+  margin-bottom: 15px;
+}
+
+
+/* Contact Page */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+
+/* Login Page */
+
+.login-container {
+  max-width: 450px;
+  margin: 80px auto;
+}
+
+.login-container input {
+  margin-bottom: 15px;
+}
+
+
+/* Admin Page */
+
+.admin-section {
+  margin-bottom: 50px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .page-header h1 {
+    font-size: 32px;
+  }
+
+}
