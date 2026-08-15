@@ -6,12 +6,11 @@ function Login() {
   const [error, setError] = useState("");
 
   const staffAccounts = [
-    "owner@riftline.com",
-    "admin@riftline.com",
-    "staff@riftline.com"
+    "contact.me.for.question@gmail.com",
+    "Aks.jain16@gmail.com",
   ];
 
-  const staffPassword = "RiftlineStaff123";
+  const staffPassword = "vR7!qL9#X2@pM6$zK8^dF4&wN1";
 
 
   function handleLogin(e) {
